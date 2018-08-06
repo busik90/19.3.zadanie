@@ -1,42 +1,48 @@
-const ADD_COMMENT = 'ADD_COMMENT';
-const REMOVE_COMMENT = 'REMOVE_COMMENT';
-const EDIT_COMMENT = 'EDIT_COMMENT';
-const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
-const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
+import uuid from 'uuid';
 
-function addComent(text) {
-  return {
-    type: ADD_COMMENT,
-    text,
-    id: uuid.v4
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
+export const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
+
+const comments = {
+  addComment: function (text) {
+    return {
+      type: ADD_COMMENT,
+      text,
+      id: uuid.v4()
+    }
+  },
+
+  editComent: function (id, text) {
+    return {
+      type: EDIT_COMMENT,
+      id,
+      text
+    }
+  },
+
+  removeComment: function (id) {
+    return {
+      type: REMOVE_COMMENT,
+      id
+    }
+  },
+
+  thumbUpComment: function (id) {
+    return {
+      type: THUMB_UP_COMMENT,
+      id
+    }
+  },
+
+  thumbDownComment: function (id) {
+    return {
+      type: THUMB_DOWN_COMMENT,
+      id
+    }
   }
 }
 
-function editComent(id, text) {
-  return {
-    type: EDIT_COMMENT,
-    id,
-    text
-  }
-}
-
-function removeComment (id) {
-  return {
-    type: REMOVE_COMMENT,
-    id
-  }
-}
-
-function thumbUpComment (id) {
-  return {
-    type: THUMB_UP_COMMENT,
-    id
-  }
-}
-
-function thumbDownComment(id) {
-  return {
-    type: THUMB_DOWN_COMMENT,
-    id
-  }
-}
+export { comments };
